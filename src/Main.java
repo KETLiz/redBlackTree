@@ -10,7 +10,7 @@ public class Main {
         tree.add(9);
 
         PrintTree pr = new PrintTree(tree);
-        pr.loopPrint("        ");
-        //pr.printTree("         ", "┌────", "────┐");
+        //pr.loopPrint("        ");
+        pr.printTree("         ", "┌────", "────┐");
     }
 }

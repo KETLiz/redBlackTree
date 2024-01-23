@@ -14,19 +14,22 @@ public class PrintTree{
         }
         System.out.println(nullString + indent1 + tree.root.getValue() + indent2);
 
-        print(tree.root, nullString);
+        nullString = nullString.substring(0, nullString.length()/2);
+        indent1 = indent1.substring(0, indent1.length()/2+1);
+        indent2 = indent2.substring(indent2.length()/2);
+        print(tree.root, nullString, indent1, indent2);
     }
 
-    private void print(Node node, String nullString) {
+    private void print(Node node, String nullString, String indent1, String indent2) {
         if(node.left != null && node.right != null) {
-            System.out.print(nullString + node.left.getValue());
-            System.out.print(nullString + node.right.getValue());
-            nullString = nullString.substring(0, nullString.length()/2);
+            System.out.print(nullString + indent1 + node.left.getValue() + indent2);
+            System.out.print(nullString + indent1 + node.right.getValue() + indent2);
+
             System.out.println();
+            String nullString2 = nullString + nullString;
+            print(node.right, nullString2, indent1, indent2);
 
-            print(node.right, nullString);
-
-            print(node.left, nullString);
+            print(node.left, nullString, indent1, indent2);
             System.out.println();
         }
 //        if(node.left != null) {
@@ -46,10 +49,11 @@ public class PrintTree{
 
     public void loopPrint(String nullString) {
         List<Node> line = new ArrayList<>();
-        List<Node> nextLine = new ArrayList<>();
+
         line.add(tree.root);
         System.out.println(nullString + tree.root);
         while(!line.isEmpty()) {
+            List<Node> nextLine = new ArrayList<>();
             for(Node node : line) {
                 nextLine.add(node.left);
 
